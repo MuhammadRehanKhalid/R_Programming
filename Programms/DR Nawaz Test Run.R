@@ -1,6 +1,6 @@
 #PCA finding
 library("factoextra")
-
+install.packages('factoextra')
 my_data <- read.csv(file.choose())
 
 res.pca <- prcomp(my_data, scale = TRUE)
