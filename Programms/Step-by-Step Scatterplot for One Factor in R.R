@@ -110,7 +110,7 @@ ggplot(radon_summary, aes(D, mean)) +
 # Adding COlors to the scatterplot_______________________#
 ggplot(radon_summary, aes(D, mean)) + 
   geom_smooth(method = "lm", formula = y ~ exp(-x), se = FALSE, color = "seagreen3", size = 0.5) +
-  geom_point(size = 2, color = "seagreen") +
+  geom_point(size = 2, color = "green") +
   geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width = 0.05, color = "seagreen") +
   labs(x="Diameter (mm)", y="Radon Released (%)") +
   theme_bw() + 
