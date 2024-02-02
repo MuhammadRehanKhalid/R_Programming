@@ -18,3 +18,13 @@ PieDonut(PD, aes(Class, Survived, count=n), title = "Titanic: Survival by Class"
 # by class
 PieDonut(PD, aes(Survived, Class, count=n), title = "Titanic: Survival by Class")
 # Exploding the pie
+PieDonut(PD, aes(Survived, Class, count=n), title = "Titanic: Survival by Class",
+         explode = 2)
+# further explode
+PieDonut(PD, aes(Survived, Class, count=n), title = "Titanic: Survival by Class",
+         explode = 2, explodeDonut=TRUE)
+# Controlling radius
+PieDonut(PD, aes(Survived, Class, count=n), title = "Titanic: Survival by Class",
+         r0 = 0)
+PieDonut(PD, aes(Survived, Class, count=n), title = "Titanic: Survival by Class",
+         r0 = 0.45, r1 = 0.9)
