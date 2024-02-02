@@ -90,3 +90,33 @@ ggplot(data_summary, aes(Temp, mean, color = Glass)) +
             position = position_dodge(width=5), vjust=1.5, show.legend = FALSE) +
   scale_x_continuous(breaks=c(100,125,150)) +
   scale_y_continuous(limits=c(450, 1450), breaks=seq(500,1400,300))
+#Customising colours
+ggplot(data_summary, aes(Temp, mean, color = Glass)) + 
+  geom_point(aes(shape = Glass), position=position_dodge(width=5), alpha=0.4, size = 3) +
+  geom_line(aes(linetype = Glass), position=position_dodge(width=5)) +
+  geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), position=position_dodge(width=5), 
+                width = 5, show.legend = FALSE) +
+  labs(x="Temperature (˚C)", y="Light Output") +
+  theme_bw() + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  theme(legend.position = c(0.1, 0.7)) +
+  geom_text(aes(label=Tukey), size = 3, 
+            position = position_dodge(width=5), vjust=1.5, show.legend = FALSE) +
+  scale_x_continuous(breaks=c(100,125,150)) +
+  scale_y_continuous(limits=c(450, 1450), breaks=seq(500,1400,300)) +
+  scale_color_brewer(palette = "Dark2")
+#Grey-scale plot
+ggplot(data_summary, aes(Temp, mean, color = Glass)) + 
+  geom_point(aes(shape = Glass), position=position_dodge(width=5), alpha=0.4, size = 3) +
+  geom_line(aes(linetype = Glass), position=position_dodge(width=5)) +
+  geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), position=position_dodge(width=5), 
+                width = 5, show.legend = FALSE) +
+  labs(x="Temperature (˚C)", y="Light Output") +
+  theme_bw() + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  theme(legend.position = c(0.1, 0.7)) +
+  geom_text(aes(label=Tukey), size = 3, 
+            position = position_dodge(width=5), vjust=1.5, show.legend = FALSE) +
+  scale_x_continuous(breaks=c(100,125,150)) +
+  scale_y_continuous(limits=c(450, 1450), breaks=seq(500,1400,300)) +
+  scale_color_grey(start = 0.1, end = 0.3)
