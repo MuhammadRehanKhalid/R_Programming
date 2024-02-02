@@ -4,7 +4,7 @@ library(readr)
 library(ggplot2)
 
 # loading and checking the data
-radon_summary <- read_csv("radon_summary.csv")
+radon_summary <- read_csv('D:/R Programming/R_Programming/Data Sets/radon_summary.csv')
 print(radon_summary)
 # Gray-scale barplot
 ggplot(radon_summary, aes(factor(D), mean)) + 

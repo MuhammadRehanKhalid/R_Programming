@@ -79,3 +79,11 @@ ggplot(chickwts, aes(feed, weight)) +
   geom_text(data = Tk, aes(x = feed, y = quant, label = cld), size = 3, vjust=-1, hjust =-1) +
   scale_fill_brewer(palette = "Pastel1")
 # colored accorfing to median
+ggplot(chickwts, aes(feed, weight)) + 
+  geom_boxplot(aes(fill = factor(..middle..)), show.legend = FALSE) +
+  labs(x="Feed Type", y="Weight (g)") +
+  theme_bw() + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  geom_text(data = Tk, aes(x = feed, y = quant, label = cld), size = 3, vjust=-1, hjust =-1) +
+  scale_fill_brewer(palette = "Blues")
+ggsave("boxplot.png", width = 4, height = 3, dpi = 1000)
