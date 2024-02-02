@@ -116,5 +116,5 @@ ggplot(radon_summary, aes(D, mean)) +
   theme_bw() + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
   geom_text(aes(label=Tukey, y = mean + sd + 2), size = 3, color = "seagreen4")
-ggsave("scatterplot.png", width = 4, height = 2.5, dpi = 1000)
+ggsave("scatterplot2.png", width = 4, height = 2.5, dpi = 1000)
 dev.off()
