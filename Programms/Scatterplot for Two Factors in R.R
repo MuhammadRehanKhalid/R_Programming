@@ -120,3 +120,5 @@ ggplot(data_summary, aes(Temp, mean, color = Glass)) +
   scale_x_continuous(breaks=c(100,125,150)) +
   scale_y_continuous(limits=c(450, 1450), breaks=seq(500,1400,300)) +
   scale_color_grey(start = 0.1, end = 0.3)
+ggsave("scatterplot_1.png", width = 4, height = 2.5, dpi = 1000)
+dev.off()
