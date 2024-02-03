@@ -7,7 +7,7 @@ library(egg)
 
 str(CO2)
 head(CO2)
-write.csv(CO2,"D:/R Programming/R_Programming/Data Sets/CO2.csv")
+#write.csv(CO2,"D:/R Programming/R_Programming/Data Sets/CO2.csv")
 #Analysis and organisation of the data
 CO2$Plant<-as.factor(CO2$Plant)
 CO2$Type<-as.factor(CO2$Type)

@@ -3,7 +3,7 @@ library(readr)
 library(ggplot2)
 # loading and checking the data
 data_summary <- read_csv('D:/R Programming/R_Programming/Data Sets/GTL_summary.csv')
-print(radon_summary)
+print(data_summary)
 #Basic plot
 ggplot(data_summary, aes(x = factor(Temp), y = mean)) + 
   geom_bar(stat = "identity")
