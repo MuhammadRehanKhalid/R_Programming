@@ -9,12 +9,12 @@ library(egg)
 CO2 = read.csv("D:/R Programming/R_Programming/Data Sets/chickpea.csv")
 CO2
 # plot___________________________# Chawleen khudki
-p <- ggplot(CO2, aes(x=Type, y=RL, fill=Treatment)) +
+p <- ggplot(CO2, aes(x=Plant, y=RL, fill=Treatment)) +
   geom_bar(stat="identity", position=position_dodge()) +
   theme_minimal() +
-  theme(legend.position="top") +
-  labs(title="CO2 Uptake by Type and Concentration",
-       x="Type", y="Uptake",
+  theme(legend.position="right") +
+  labs(title="Root lenght of both varieties and different treatments",
+       x="Variety", y="Root Length (cm)",
        fill="Concentration")
 p
 #_________________________________________________#
@@ -35,42 +35,13 @@ dt
 print(dt)
 _______________________________________________________________
 # Your ggplot code
-p <- ggplot(CO2, aes(x=Type, y=RL, fill=Treatment)) +
-  geom_bar(stat="identity", position=position_dodge()) +
-  theme_minimal() +
-  theme(legend.position="top") +
-  labs(title="CO2 Uptake by Type and Concentration",
-       x="Type", y="Uptake",
-       fill="Concentration")
-p
-# Check for NaN values
-any(is.nan(CO2$RL))
-# Check for outliers in 'RL' variable
-boxplot(CO2$RL)
-# Log transformation (if appropriate)
-CO2$RL <- log(CO2$RL + 1)  # Adding 1 to avoid log(0)
+# Check for extreme values
 summary(CO2$RL)
-head(CO2)
+# Example: Log transformation
+CO2$RL <- log(CO2$RL + 1)
+# Check for zero variance
+apply(CO2, 2, var)
 
-# Analysis and organisation of the data
-anova <- aov(RL ~ factor(Treatment)*Plant*Treatment, data = CO2)
-summary(anova)
-
-# Tukey's test and compact letter display
-Tukey <- TukeyHSD(anova)
-cld <- multcompLetters4(anova, Tukey)
-
-# Table with the mean, the standard deviation, and the letters indicating significant differences for each treatment
-dt <- group_by(CO2, Plant, Type, Treatment) %>%
-  summarise(uptake_mean=mean(RL), sd=sd(RL)) %>%
-  arrange(desc(uptake_mean))
-
-# Extract Tukey's letters and add them to the table
-cld <- as.data.frame.list(cld$`factor(Plant):Type:Treatment`)
-dt$Tukey <- cld$Letters
-
-# Print the resulting table
-print(dt)
 __________________________________________________________________________
 #Basic Barplot___________________________________#
 ggplot(dt, aes(x = factor(Plant), y = uptake_mean, fill = Type:Treatment)) +
