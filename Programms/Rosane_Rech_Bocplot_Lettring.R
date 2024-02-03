@@ -6,7 +6,7 @@ library(multcompView)
 library(dplyr)
 #-------------------------#
 str(chickwts)
-chickwts
+write.csv(chickwts, "D:/R Programming/R_Programming/Data Sets/chickwts.csv", row.names = T)
 ## analysis of variance
 anova <- aov(weight ~ feed, data = chickwts)
 summary(anova)

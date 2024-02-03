@@ -1,3 +1,4 @@
+options(error=NULL)
 #Bar Plots for presenting three-factors
 library(ggplot2)
 library(ggthemes)
@@ -5,17 +6,10 @@ library(dplyr)
 library(multcompView)
 library(egg)
 
-str(CO2)
-head(CO2)
-write.csv(CO2,"D:/R Programming/R_Programming/Data Sets/CO2.csv")
-#Analysis and organisation of the data
-CO2$Plant<-as.factor(CO2$Plant)
-CO2$Type<-as.factor(CO2$Type)
-CO2$Treatment<-as.factor(CO2$Treatment)
-CO2$conc<-as.factor(CO2$conc)
-CO2$uptake<-as.numeric(CO2$uptake)
+CO2 = read.csv("D:/R Programming/R_Programming/Data Sets/chickpea.csv")
+CO2
 # plot___________________________# Chawleen khudki
-p <- ggplot(CO2, aes(x=Type, y=uptake, fill=conc)) +
+p <- ggplot(CO2, aes(x=Type, y=RL, fill=Treatment)) +
   geom_bar(stat="identity", position=position_dodge()) +
   theme_minimal() +
   theme(legend.position="top") +
@@ -25,22 +19,62 @@ p <- ggplot(CO2, aes(x=Type, y=uptake, fill=conc)) +
 p
 #_________________________________________________#
 # Analysis and organisation of the data
-anova <- aov(uptake ~ factor(conc)*Type*Treatment, data = CO2)
+anova <- aov(RL ~ factor(Plant)*Type*Treatment, data = CO2)
 summary(anova)
 # Tukey's test and compact letter display
 Tukey <- TukeyHSD(anova)
 cld <- multcompLetters4(anova, Tukey)
 
+1
 # Table with the mean, the standard deviation and the letters indications significant differences for each treatment
-dt <- group_by(CO2, conc, Type, Treatment) %>%
-  summarise(uptake_mean=mean(uptake), sd=sd(uptake)) %>%
+dt <- group_by(CO2, Plant, Type, Treatment) %>%
+  summarise(uptake_mean=mean(RL), sd=sd(RL)) %>%
   arrange(desc(uptake_mean))
 cld <- as.data.frame.list(cld$`factor(conc):Type:Treatment`)
 dt$Tukey <- cld$Letters
-
+dt
 print(dt)
+_______________________________________________________________
+# Your ggplot code
+p <- ggplot(CO2, aes(x=Type, y=RL, fill=Treatment)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  theme_minimal() +
+  theme(legend.position="top") +
+  labs(title="CO2 Uptake by Type and Concentration",
+       x="Type", y="Uptake",
+       fill="Concentration")
+p
+# Check for NaN values
+any(is.nan(CO2$RL))
+# Check for outliers in 'RL' variable
+boxplot(CO2$RL)
+# Log transformation (if appropriate)
+CO2$RL <- log(CO2$RL + 1)  # Adding 1 to avoid log(0)
+summary(CO2$RL)
+head(CO2)
+
+# Analysis and organisation of the data
+anova <- aov(RL ~ factor(Treatment)*Plant*Treatment, data = CO2)
+summary(anova)
+
+# Tukey's test and compact letter display
+Tukey <- TukeyHSD(anova)
+cld <- multcompLetters4(anova, Tukey)
+
+# Table with the mean, the standard deviation, and the letters indicating significant differences for each treatment
+dt <- group_by(CO2, Plant, Type, Treatment) %>%
+  summarise(uptake_mean=mean(RL), sd=sd(RL)) %>%
+  arrange(desc(uptake_mean))
+
+# Extract Tukey's letters and add them to the table
+cld <- as.data.frame.list(cld$`factor(Plant):Type:Treatment`)
+dt$Tukey <- cld$Letters
+
+# Print the resulting table
+print(dt)
+__________________________________________________________________________
 #Basic Barplot___________________________________#
-ggplot(dt, aes(x = factor(conc), y = uptake_mean, fill = Type:Treatment)) +
+ggplot(dt, aes(x = factor(Plant), y = uptake_mean, fill = Type:Treatment)) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_errorbar(aes(ymax = uptake_mean + sd, ymin = uptake_mean - sd),
                 position = position_dodge(0.9), width = 0.25, color = "Gray25") +
@@ -59,7 +93,7 @@ ggplot(dt, aes(x = factor(conc), y = uptake_mean, fill = Treatment)) +
   theme_few() +
   facet_grid(.~Type, labeller = label_both)
 # barplot
-ggplot(dt, aes(x = factor(conc), y = uptake_mean, fill = Treatment)) +
+ggplot(dt, aes(x = factor(Plant), y = uptake_mean, fill = Treatment)) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_errorbar(aes(ymax = uptake_mean + sd, ymin = uptake_mean - sd),
                 position = position_dodge(0.9), width = 0.25, color = "Gray25") +
