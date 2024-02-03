@@ -25,7 +25,6 @@ summary(anova)
 Tukey <- TukeyHSD(anova)
 cld <- multcompLetters4(anova, Tukey)
 
-1
 # Table with the mean, the standard deviation and the letters indications significant differences for each treatment
 dt <- group_by(CO2, Plant, Type, Treatment) %>%
   summarise(uptake_mean=mean(RL), sd=sd(RL)) %>%
