@@ -8,13 +8,12 @@ install.packages('FactoMineR')
 library(factoextra)
 library(readxl)
 my_data2<- read.csv(file.choose())
-library(readxl)
-df <- read_excel("MAryam PCA Correlation/Excel sheet M Khawar.xlsx", 
-                                   sheet = "Mean")
+#library(readxl)
+#df <- read_excel("MAryam PCA Correlation/Excel sheet M Khawar.xlsx", sheet = "Mean")
 #df <- my_data2[,-1:-6]
 #my_data <- my_data2
 #jpeg ("epss.eps", width = 5, height = 5, units = "in", res = 300)
-res.pca<- prcomp(df,scale=TRUE)
+res.pca<- prcomp(my_data2,scale=TRUE)
 pca_plot1<-fviz_eig (res.pca)
 pca_plot1
 #diff color
@@ -68,12 +67,12 @@ y
 #1#co-relation plot 1
 #Method “circle”, “square”, “ellipse”, “number”, “shade”, “color”, “pie”
 library(corrplot)
-M=cor(df)
+M=cor(my_data2)
 corrplot(M,method = "pie")
 corrplot(M,method = "circle", addCoef.col = "black",col = COL2("RdYlBu"), type = "lower")
 
 
-jpeg("Iqra_Corr2.jpeg", width = 10, height = 10, units = "in", res = 600,pointsize = 6)
+jpeg("Iqra_Corr2.jpeg", width = 10, height = 10, units = "in", res = 600,pointsize = 3)
 corrplot(M,method = "circle", addCoef.col = "black" ,col = COL2("RdYlBu"), type = "lower", bg = "transparent")
 dev.off()
 
