@@ -43,6 +43,11 @@ mat * mat2
 # build and array
 arr <- array(1:24, dim = c(2,3,4))
 arr
-
-
-
+# make lsits
+list1 <- list(1,2,3,4,5)
+list1
+list2 <- list("a","b","c","d","e")
+list2
+listt  <- list(numeric_vec, character_vec, logical_vec,
+                  number = c(1,2,32,4,5))
+listt
