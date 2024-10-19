@@ -29,4 +29,15 @@ install.packages("dplyr")
 
 
 
-#----Packaeges_for_Data_Visualization----
+#----Packages_for_Data_Visualization----
+install.packages("ggplot2")# check ggplot2 book and also check Andrew abbe la guide for plotting
+library(ggplot2)
+df <- data.frame(mpg)
+print(df)
+ggplot(df, aes(x=manufacturer, y=cty)) + geom_point()
+ggplot(df, aes(x=manufacturer, y=cty)) + geom_boxplot()
+ggplot(df, aes(x=manufacturer, y=cty)) + geom_bar(stat = "identity")
+ggplot(df, aes(x=manufacturer, y=cty)) + geom_bin2d()
+ggplot(df, aes(x=manufacturer, y=cty)) + geom_jitter()
+ggplot(df, aes(x=manufacturer, y=cty)) + geom_violin()
+
