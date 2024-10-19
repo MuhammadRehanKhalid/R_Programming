@@ -1,5 +1,5 @@
-# ---- Packages and Functions----
-## ---- Data_Loading_and_Writing----
+# 1. ---- Packages and Functions----
+# 2. ---- Data_Loading_and_Writing----
 install.packages("readr")
 install.packages("readxl")
 install.packages("tibble")
@@ -11,7 +11,7 @@ install.packages("openxlsx")
 install.packages("writexl")
 install.packages("haven")
 # install.packages("tidyr")
-## ---- Packages_for_Data_manipulation_data_wrangling/Handling----
+# 3, ---- Packages_for_Data_manipulation_data_wrangling/Handling----
 install.packages("dplyr")
 install.packages("tidyr")
 install.packages("lubridate")
@@ -31,7 +31,7 @@ install.packages("lubridate")
 
 
 
-#----Packages_for_Data_Visualization----
+# 4. ----Packages_for_Data_Visualization----
 install.packages("ggplot2")# check ggplot2 book and also check Andrew abbe la guide for plotting
 install.packages("plotly")
 install.packages("RcolorBrewer") # color palettes
@@ -65,7 +65,7 @@ fig2
 
 
 
-# ----Statistics_Machine_Learning----
+# 5. ----Statistics_Machine_Learning----
 install.packages("tidymodels") # tidyverse for modeling
 install.packages("caret") # classification and regression training
 install.packages("car") # companion to applied regression
@@ -75,3 +75,16 @@ install.packages("nlme") # linear and nonlinear mixed effects models
 install.packages("vcd") # visualizing categorical data
 install.packages("survival") # survival analysis
 install.packages("agricolae") # statistical procedures for agricultural research
+install.packages("randomForest") # random forest
+# 6. ----Packages_for_Reporting----
+install.packages("knitr")
+install.packages("rmarkdown")
+install.packages("shiny")
+install.packages("flexdashboard")
+# 7. ----Packages_for_Systematic_review_Meta_Analysi----
+install.packages("metafor")
+install.packages("meta")
+install.packages("devtools") # for dmetar
+library(devtools)
+devtools::install_github("MathiasHarrer/dmetar")# dcomtois or MathiasHarrer
+install.packages("litsearchr")
