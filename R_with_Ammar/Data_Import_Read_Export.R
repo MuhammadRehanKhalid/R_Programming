@@ -1,11 +1,9 @@
-# readr, readxl, openxl
+# readr, readxl, openxlsx
 install.packages("openxlsx", dependencies =  TRUE)
-install.packages("openxl")
 library(writexl)
 library(readxl)
 library(readr)
-library(openxlsx)
-library(openxl) # not found
+library(openxlsx) # combined form of readxl and writexl
 
 df <- read_csv("./Data/titanic.csv")
 df
