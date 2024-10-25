@@ -8,11 +8,11 @@ install.packages('FactoMineR')
 library(factoextra)
 library(FactoMineR)
 library(readxl)
-df_1<- read_excel(file.choose())
+df<- read_excel("D:\\R Programming\\R_Programming\\T_PCA_Data.xlsx", sheet = 2)
 library(readxl)
 df <- read_excel("MAryam PCA Correlation/Excel sheet M Khawar.xlsx", 
                                    sheet = "Mean")
-df <- df_1[0:-3]
+df <- df_1[0:-1]
 df
 #my_data <- my_data2
 #jpeg ("epss.eps", width = 5, height = 5, units = "in", res = 300)
@@ -41,13 +41,13 @@ pca_plot4<-fviz_pca_var(res.pca,
 )
 pca_plot4
 #dev.off()
-ggsave("pca_compoIQ2.png",pca_plot1, width = 4,height = 4, units = "in", dpi = 600, bg='transparent', pointsize = 30)
+ggsave("Stress Condition.png",pca_plot1, width = 4,height = 4, units = "in", dpi = 600, bg='transparent', pointsize = 30)
 dev.set(dev.next())
-ggsave("spread_PcaIQ2.png",pca_plot2, width = 10,height = 10, units = "in", dpi = 600, bg='transparent', pointsize = 30)
+ggsave("Stress Condition1.png",pca_plot2, width = 10,height = 10, units = "in", dpi = 600, bg='transparent', pointsize = 30)
 dev.set(dev.next())
-ggsave("Circle_PcaIQ1.png",pca_plot3, width = 6,height = 6, units = "in", dpi = 600, bg='transparent', pointsize = 30)
+ggsave("Stress Condition2.png",pca_plot3, width = 6,height = 6, units = "in", dpi = 600, bg='transparent', pointsize = 30)
 dev.set(dev.next())
-ggsave("Circle_PcaIQ2.png",pca_plot4, width = 10,height = 10, units = "in", dpi = 600, bg='transparent', pointsize = 30)
+ggsave("Stress Condition3.png",pca_plot4, width = 10,height = 10, units = "in", dpi = 600, bg='transparent', pointsize = 30)
 dev.set(dev.next())
 
 
@@ -75,7 +75,7 @@ corrplot(M,method = "pie")
 corrplot(M,method = "circle", addCoef.col = "black",col = COL2("RdYlBu"), type = "lower")
 
 
-jpeg("Iqra_Corr2.jpeg", width = 10, height = 10, units = "in", res = 600,pointsize = 6)
+jpeg("Stress_Conditions.jpeg", width = 10, height = 10, units = "in", res = 600,pointsize = 6)
 corrplot(M,method = "circle", addCoef.col = "black" ,col = COL2("RdYlBu"), type = "lower", bg = "transparent")
 dev.off()
 

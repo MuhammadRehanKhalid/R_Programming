@@ -4,7 +4,7 @@ library(tidyverse)
 library(readxl)
 # ----import data----
 df <- read_csv("./Data/titanic.csv")
-view(df)
+
 # ----data_understaning----
 glimpse(df)
 tibble(df)
@@ -41,5 +41,6 @@ df %>%
 # Point plot
 df %>% 
   filter(Sex == "male") %>%
-  ggplot(aes(x = Age, y = Fare, colour = class)) + 
-  geom_point()
+  ggplot(aes(x = Fare, y = Age, colour = factor(Pclass), na.rm = TRUE)) + 
+  geom_point() +
+  scale_color_discrete(name = "Pclass") 
