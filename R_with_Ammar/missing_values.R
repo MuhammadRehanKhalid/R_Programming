@@ -59,11 +59,11 @@ df_clean |> is.na() |> colSums() |> barplot(col = "purple")
 
 # automatic imputate mode values in column dataset
 df_clean_final <- df |> 
-  select(-deck) |> 
-  mutate(age = ifelse(is.na(age), mean(age, na.rm = TRUE), age),
-         embarked = ifelse(is.na(embarked)|embarked=="", Mode())
-         )
+  select(-Cabin) |> 
+  mutate(age = ifelse(is.na(Age), mean(Age, na.rm = TRUE), Age),
+         Embarked = ifelse((is.na(Embarked)|Embarked==""), Mode(Embarked,  na.rm=TRUE), Embarked))
 
+Mode(df_clean_final$Embarked,  na.rm=TRUE)
 
 
 df_clean_2 <- df |>
