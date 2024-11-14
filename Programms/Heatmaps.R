@@ -32,9 +32,10 @@ library("DESeq")
 
 #-----------------------------pheatmap----
 library("factoextra")
-my_data <- read.csv(file.choose())
-data <- as.matrix(my_data)
-
+my_data <- read_xlsx(file.choose())
+data <- as.matrix(my_data[, -1])
+data <- as.matrix(data[,-1])
+data
 pheatmap(data)
 pheatmap(data, scale="column", col = cm.colors(256))
 pheatmap(data, scale="column", display_numbers = T, col = terrain.colors(256))
