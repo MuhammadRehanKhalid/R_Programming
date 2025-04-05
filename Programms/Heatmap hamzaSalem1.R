@@ -5,15 +5,17 @@ library(tidyverse)
 library(RColorBrewer)
 library(cluster) #clustering algorithms
 library(factoextra)
+library(readxl)
 # file import and preparation
-LC <- read.csv(file.choose(),check.names = F)
-LC <- LC[order(LC$`T. Carbs`),]
+LC <- read_xlsx(file.choose())
+LC <- LC[order(LC$`treatmet`),]
 View(LC)
-row.names(LC) <- LC$x
-View(LC)
-LC <- LC[1:19,-1]
-LC <- data.matrix(LC)
-SC_LC <- scale(LC, scale= TRUE)
+# row.names(LC) <- LC$x
+# View(LC)
+LC_cat <- LC[,1:2]
+LC_conti <- LC[,3:ncol(LC)]
+LC_conti <- data.matrix(LC)
+SC_LC <- scale(LC_conti, scale= TRUE)
 y <- plot(SC_LC)
 y <- SC_LC
 #------------------------My-Way----------------
@@ -35,7 +37,7 @@ cluster <- as.matrix(mycl)
 output <- cbind(y,cluster)
 library(grDevices)
 #plot heatmap
-mycol <- colorRampPalette(rgb(0, 0, 1:10/10))
+mycol <- colorRampPalette(c("cyan", "yellow", "darkgreen"))(100)
 
 pheatmap(y, key.xlab = "none", key.ylab = "none",cellwidth = 20, methods="none", cellheight = 15, fontsize_row =12, angle_col = "45",fontsize_col = 12, RowSideColors =mycolhc,Rowv = as.dendrogram(hr), Colv = as.dendrogram(hc), 
          col = mycol, density.info = "none", trace = "none", dendrogram = "both", scale ="row", 

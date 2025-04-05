@@ -11,10 +11,9 @@ library(readxl)
 # PCA plot
 df_1<- read_excel("D:\\Study\\Study and Extras\\Dr Nawaz Sb Paper\\3rd paper\\3rd paper data musab.xlsx", sheet = 5, .name_repair = "minimal")
 
-df <- read_excel("MAryam PCA Correlation/Excel sheet M Khawar.xlsx", 
-                                   sheet = "Mean")
+df <- read_excel(file.choose())
 df <- df_1 
-# df <- df_1[0:-2]
+df <- df[0:-5]
 df
 #my_data <- my_data2
 #jpeg ("epss.eps", width = 5, height = 5, units = "in", res = 300)
